@@ -11,12 +11,13 @@
 # ]
 # )
 
-# print(response.choices[0].message.content) 
+# print(response.choices[0].message.content)  
+#key api = 
 
 from langchain_groq import ChatGroq
 llm = ChatGroq(
     model="llama-3.1-8b-instant",
-    api_key="key"
+    api_key=""
 )
 # response= llm.invoke("what is AI ?")
 # print(response.content)

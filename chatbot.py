@@ -4,6 +4,7 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_community.vectorstores import FAISS
 from langchain_groq import ChatGroq 
+import os
 st.title("AI Document Chatbot")
 st.write("PDF upload karo aur sawaal poochho!") 
 uploaded_file = st.file_uploader("upload here", type="pdf")
@@ -33,7 +34,7 @@ if uploaded_file is not None:
         docs = retriever.invoke(question)
         context = docs[0].page_content
         
-        llm = ChatGroq(model="llama-3.1-8b-instant", api_key="")
+        llm = ChatGroq(model="llama-3.1-8b-instant", api_key=os.environ.get("GROQ_API_KEY"))
         
         prompt = f"Context: {context}\n\nQuestion: {question}"
         response = llm.invoke(prompt)
